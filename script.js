@@ -79,18 +79,15 @@ for (let i = 0; i < totalTestimonials; i++) {
     sliderDots.appendChild(dot);
 }
 
-const dots = document.querySelectorAll('.dot');
+const dots = document.querySelectorAll('#sliderDots .dot');
 
 function updateTestimonials() {
-    // Remove all active and prev classes
     testimonialCards.forEach(card => {
         card.classList.remove('active', 'prev');
     });
     
-    // Add active class to current
     testimonialCards[currentTestimonial].classList.add('active');
     
-    // Update dots
     dots.forEach((dot, index) => {
         if (index === currentTestimonial) {
             dot.classList.add('active');
@@ -126,13 +123,91 @@ prevBtn.addEventListener('click', prevTestimonial);
 // Auto-play testimonials
 let autoPlayInterval = setInterval(nextTestimonial, 6000);
 
-// Pause auto-play on hover
 testimonialsContainer.addEventListener('mouseenter', () => {
     clearInterval(autoPlayInterval);
 });
 
 testimonialsContainer.addEventListener('mouseleave', () => {
     autoPlayInterval = setInterval(nextTestimonial, 6000);
+});
+
+// ============================================
+// ATTESTATI CAROUSEL
+// ============================================
+
+const attestatiTrack = document.getElementById('attestatiTrack');
+const attestatiSlides = document.querySelectorAll('.attestato-slide');
+const attestatiPrevBtn = document.getElementById('attestatiPrev');
+const attestatiNextBtn = document.getElementById('attestatiNext');
+const attestatiDotsContainer = document.getElementById('attestatiDots');
+
+let currentAttestato = 0;
+const totalAttestati = attestatiSlides.length;
+
+// Set first slide active
+if (attestatiSlides.length > 0) {
+    attestatiSlides[0].classList.add('active');
+}
+
+// Create dots for attestati
+for (let i = 0; i < totalAttestati; i++) {
+    const dot = document.createElement('span');
+    dot.classList.add('dot');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToAttestato(i));
+    attestatiDotsContainer.appendChild(dot);
+}
+
+const attestatiDots = document.querySelectorAll('#attestatiDots .dot');
+
+function updateAttestati() {
+    attestatiSlides.forEach(slide => {
+        slide.classList.remove('active', 'prev');
+    });
+    
+    attestatiSlides[currentAttestato].classList.add('active');
+    
+    attestatiDots.forEach((dot, index) => {
+        if (index === currentAttestato) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+}
+
+function nextAttestato() {
+    attestatiSlides[currentAttestato].classList.add('prev');
+    currentAttestato = (currentAttestato + 1) % totalAttestati;
+    updateAttestati();
+}
+
+function prevAttestato() {
+    attestatiSlides[currentAttestato].classList.add('prev');
+    currentAttestato = (currentAttestato - 1 + totalAttestati) % totalAttestati;
+    updateAttestati();
+}
+
+function goToAttestato(index) {
+    if (index !== currentAttestato) {
+        attestatiSlides[currentAttestato].classList.add('prev');
+        currentAttestato = index;
+        updateAttestati();
+    }
+}
+
+attestatiNextBtn.addEventListener('click', nextAttestato);
+attestatiPrevBtn.addEventListener('click', prevAttestato);
+
+// Auto-play attestati
+let attestatiAutoPlay = setInterval(nextAttestato, 5000);
+
+attestatiTrack.addEventListener('mouseenter', () => {
+    clearInterval(attestatiAutoPlay);
+});
+
+attestatiTrack.addEventListener('mouseleave', () => {
+    attestatiAutoPlay = setInterval(nextAttestato, 5000);
 });
 
 // ============================================
@@ -193,7 +268,7 @@ window.addEventListener('scroll', () => {
     const heroContent = document.querySelector('.hero-content');
     
     if (heroContent && scrolled < window.innerHeight) {
-        heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+        heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
         heroContent.style.opacity = 1 - (scrolled / window.innerHeight);
     }
 });
@@ -214,7 +289,6 @@ window.addEventListener('load', () => {
 // CURSOR EFFECT (Optional Enhancement)
 // ============================================
 
-// Custom cursor for desktop
 if (window.innerWidth > 968) {
     const cursor = document.createElement('div');
     cursor.style.cssText = `
@@ -236,7 +310,6 @@ if (window.innerWidth > 968) {
         cursor.style.top = e.clientY - 10 + 'px';
     });
     
-    // Scale cursor on hover
     const interactiveElements = document.querySelectorAll('a, button, .servizio-card, .journey-card');
     interactiveElements.forEach(element => {
         element.addEventListener('mouseenter', () => {
@@ -261,7 +334,6 @@ if ('loading' in HTMLImageElement.prototype) {
         img.src = img.dataset.src;
     });
 } else {
-    // Fallback for browsers that don't support lazy loading
     const script = document.createElement('script');
     script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
     document.body.appendChild(script);
@@ -271,7 +343,6 @@ if ('loading' in HTMLImageElement.prototype) {
 // UTILITY FUNCTIONS
 // ============================================
 
-// Debounce function for performance
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -284,7 +355,6 @@ function debounce(func, wait) {
     };
 }
 
-// Apply debounce to scroll events
 const debouncedScroll = debounce(() => {
     highlightNavLink();
 }, 10);

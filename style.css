@@ -186,9 +186,20 @@ a {
 .hero-content {
     position: relative;
     z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0 var(--spacing-md);
+    width: 100%;
+    max-width: 1400px;
+}
+
+.hero-text {
     text-align: center;
     color: var(--white);
-    padding: 0 var(--spacing-md);
+    flex: 1;
+    min-width: 0;
 }
 
 .hero-title {
@@ -203,7 +214,7 @@ a {
 
 .hero-subtitle {
     font-family: var(--font-serif);
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
     font-weight: 300;
     font-style: italic;
     margin-bottom: var(--spacing-md);
@@ -211,11 +222,62 @@ a {
 }
 
 .hero-description {
-    font-size: 1.1rem;
-    max-width: 600px;
+    font-size: 1rem;
+    max-width: 500px;
     margin: 0 auto var(--spacing-lg);
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.9);
+}
+
+/* Hero Images */
+.hero-image {
+    flex: 0 0 200px;
+    max-width: 200px;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 120px;
+    border: 3px solid rgba(196, 165, 90, 0.4);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 2s ease-in;
+}
+
+/* Hero Decorative Elements */
+.hero-deco {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-deco-left {
+    left: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hero-deco-right {
+    right: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.deco-rose,
+.deco-om {
+    width: 120px;
+    height: 120px;
+    animation: floatSlow 6s ease-in-out infinite;
+}
+
+.deco-om {
+    animation-delay: -3s;
+}
+
+@keyframes floatSlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
 
 .cta-button {
@@ -491,7 +553,7 @@ a {
     text-align: center;
     line-height: 2;
     margin-bottom: var(--spacing-md);
-    quotes: """ """ "'" "'";
+    quotes: "\201C" "\201D" "\2018" "\2019";
 }
 
 .philosophy-quote::before {
@@ -600,11 +662,121 @@ a {
 }
 
 /* ============================================
+   ATTESTATI CAROUSEL SECTION
+   ============================================ */
+.attestati {
+    padding: var(--spacing-xl) 0;
+    background: var(--cream);
+}
+
+.attestati-carousel {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.attestati-track {
+    position: relative;
+    min-height: 480px;
+    overflow: hidden;
+}
+
+.attestato-slide {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.6s ease;
+    text-align: center;
+}
+
+.attestato-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    position: relative;
+}
+
+.attestato-slide.prev {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.attestato-slide img {
+    max-height: 420px;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(90, 45, 45, 0.15);
+    border: 3px solid var(--gold);
+}
+
+.attestato-caption {
+    margin-top: var(--spacing-sm);
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--burgundy);
+    font-style: italic;
+}
+
+.attestati-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.attestati-btn {
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--gold);
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+}
+
+.attestati-btn:hover {
+    background: var(--gold);
+    color: var(--white);
+    transform: scale(1.1);
+}
+
+.attestati-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.attestati-dots {
+    display: flex;
+    gap: 10px;
+}
+
+.attestati-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--rose);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.attestati-dots .dot.active {
+    background: var(--gold);
+    transform: scale(1.3);
+}
+
+/* ============================================
    TESTIMONIANZE SECTION
    ============================================ */
 .testimonianze {
     padding: var(--spacing-xl) 0;
-    background: var(--cream);
+    background: var(--white);
 }
 
 .testimonials-slider {
@@ -638,7 +810,7 @@ a {
 }
 
 .testimonial-content {
-    background: var(--white);
+    background: var(--cream);
     padding: var(--spacing-lg);
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(90, 45, 45, 0.1);
@@ -646,7 +818,7 @@ a {
 }
 
 .testimonial-content::before {
-    content: '"';
+    content: '\201C';
     position: absolute;
     top: -20px;
     left: 30px;
@@ -738,7 +910,7 @@ a {
    ============================================ */
 .contatti {
     padding: var(--spacing-xl) 0;
-    background: var(--white);
+    background: var(--cream);
 }
 
 .contatti-content {
@@ -773,34 +945,73 @@ a {
     margin-bottom: var(--spacing-md);
 }
 
-.social-icons {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    max-width: 400px;
-    margin: 0 auto;
+/* YouTube Join Button */
+.youtube-join {
+    margin-bottom: var(--spacing-md);
 }
 
-.social-link {
-    display: flex;
+.youtube-join-btn {
+    display: inline-flex;
     align-items: center;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-sm) var(--spacing-md);
-    background: var(--cream);
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #c4302b, #ff0000);
+    color: var(--white);
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.05rem;
     border-radius: 50px;
     transition: var(--transition);
-    border: 2px solid transparent;
+    box-shadow: 0 6px 25px rgba(196, 48, 43, 0.3);
+    letter-spacing: 0.5px;
 }
 
-.social-link:hover {
+.youtube-join-btn svg {
+    flex-shrink: 0;
+}
+
+.youtube-join-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 35px rgba(196, 48, 43, 0.5);
+    background: linear-gradient(135deg, #a02520, #cc0000);
+    color: var(--white);
+}
+
+/* Social Icons Horizontal */
+.social-icons-horizontal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-top: var(--spacing-sm);
+}
+
+.social-icon-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--gold);
+    color: var(--burgundy);
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(90, 45, 45, 0.08);
+}
+
+.social-icon-circle:hover {
     background: var(--gold);
     color: var(--white);
     border-color: var(--gold);
-    transform: translateX(10px);
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(196, 165, 90, 0.35);
 }
 
-.social-icon {
-    font-size: 1.5rem;
+.social-icon-circle svg {
+    width: 22px;
+    height: 22px;
 }
 
 /* ============================================
@@ -903,11 +1114,56 @@ a {
     }
 
     .hero-subtitle {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     .section-title {
         font-size: 2.5rem;
+    }
+
+    /* Hero responsive: hide side images on tablet */
+    .hero-image {
+        flex: 0 0 140px;
+        max-width: 140px;
+    }
+
+    .hero-image img {
+        height: 200px;
+    }
+
+    .hero-deco {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    /* Hero: stack vertically on mobile */
+    .hero-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding-top: 100px;
+    }
+
+    .hero-image {
+        flex: 0 0 auto;
+        max-width: 120px;
+        display: none;
+    }
+
+    .hero-text {
+        order: 1;
+    }
+
+    .hero-deco {
+        display: none;
+    }
+
+    .attestati-track {
+        min-height: 350px;
+    }
+
+    .attestato-slide img {
+        max-height: 300px;
     }
 }
 
@@ -934,7 +1190,17 @@ a {
         font-size: 0.9rem;
     }
 
-    .social-icons {
-        max-width: 100%;
+    .social-icons-horizontal {
+        gap: 0.8rem;
+    }
+
+    .social-icon-circle {
+        width: 48px;
+        height: 48px;
+    }
+
+    .youtube-join-btn {
+        font-size: 0.95rem;
+        padding: 0.8rem 1.5rem;
     }
 }
