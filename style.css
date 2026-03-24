@@ -646,6 +646,135 @@ a {
     line-height: 1.7;
 }
 
+/* Pricing inside service cards */
+.servizio-prezzi {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid rgba(196, 165, 90, 0.3);
+}
+
+.prezzi-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--gold);
+    font-family: var(--font-sans);
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    text-align: center;
+}
+
+.prezzi-label-mt {
+    margin-top: 0.75rem;
+}
+
+.prezzi-inline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.prezzi-inline li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.28rem 0.4rem;
+    font-size: 0.86rem;
+    color: var(--text-dark);
+    border-bottom: 1px dashed rgba(196, 165, 90, 0.2);
+}
+
+.prezzi-inline li:last-child {
+    border-bottom: none;
+}
+
+.prezzi-inline li span:last-child:not(.prezzi-note) {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    color: var(--burgundy);
+    font-size: 0.95rem;
+    white-space: nowrap;
+    margin-left: 0.5rem;
+}
+
+.prezzi-note {
+    font-style: italic;
+    color: var(--text-light);
+    font-size: 0.82rem;
+    width: 100%;
+    text-align: center;
+}
+
+.servizio-prezzi-info {
+    text-align: center;
+}
+
+.prezzi-info-text {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--text-light);
+    text-align: center;
+    padding: 0.5rem 0;
+}
+
+/* PDF certificate cards */
+.attestato-pdf-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+    background: var(--white);
+    border: 3px solid var(--gold);
+    border-radius: 16px;
+    padding: var(--spacing-lg) var(--spacing-md);
+    box-shadow: 0 10px 40px rgba(90, 45, 45, 0.12);
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.pdf-scroll-icon {
+    font-size: 3.5rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1;
+}
+
+.attestato-pdf-card h4 {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    color: var(--burgundy);
+    margin-bottom: 0.5rem;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.attestato-pdf-card p {
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.attestato-pdf-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.7rem 1.5rem;
+    background: linear-gradient(135deg, var(--gold), var(--burgundy));
+    color: var(--white);
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: var(--font-sans);
+    transition: var(--transition);
+}
+
+.attestato-pdf-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(90, 45, 45, 0.3);
+}
+
 .servizi-note {
     text-align: center;
     padding: var(--spacing-lg);
@@ -1013,7 +1142,6 @@ a {
     width: 22px;
     height: 22px;
 }
-
 /* ============================================
    FOOTER
    ============================================ */
@@ -1029,9 +1157,11 @@ a {
 }
 
 .footer-logo img {
-    height: 80px;
+    height: 100px;
     margin: 0 auto var(--spacing-sm);
-    filter: brightness(0) invert(1);
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .footer-text {

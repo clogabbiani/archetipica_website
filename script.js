@@ -249,13 +249,23 @@ const observer = new IntersectionObserver((entries) => {
 
 // Observe elements for animation
 const animateElements = document.querySelectorAll(
-    '.journey-card, .servizio-card, .chi-sono-image, .chi-sono-text'
+    '.journey-card, .chi-sono-image, .chi-sono-text'
 );
 
 animateElements.forEach(element => {
     element.style.opacity = '0';
     element.style.transform = 'translateY(30px)';
     element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    observer.observe(element);
+});
+
+// Service cards with staggered entrance (0.15s delay per card in each row of 3)
+const serviceCards = document.querySelectorAll('.servizio-card');
+serviceCards.forEach((element, index) => {
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(40px)';
+    const delay = (index % 3) * 0.15;
+    element.style.transition = `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`;
     observer.observe(element);
 });
 
