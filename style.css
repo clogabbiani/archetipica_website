@@ -14,9 +14,9 @@
     --gold: #c4a55a;
     --rose: #e8c5c5;
     --white: #ffffff;
-    --cream: #faf8f5;
-    --text-dark: #2d2d2d;
-    --text-light: #666666;
+    --cream: #f7ecec;
+    --text-dark: #2a1a1a;
+    --text-light: #574040;
     
     /* Typography */
     --font-serif: 'Cormorant Garamond', serif;
@@ -394,12 +394,14 @@ a {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-lg);
-    align-items: center;
+    align-items: stretch;
     margin-bottom: var(--spacing-xl);
 }
 
 .chi-sono-image {
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .image-frame {
@@ -407,6 +409,8 @@ a {
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 20px 60px rgba(90, 45, 45, 0.2);
+    flex: 1;
+    min-height: 480px;
 }
 
 .image-frame::before {
@@ -423,8 +427,9 @@ a {
 
 .image-frame img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
+    object-position: center top;
     transition: var(--transition);
 }
 
@@ -1061,6 +1066,22 @@ a {
     font-style: italic;
     color: var(--burgundy);
     font-weight: 500;
+}
+
+.contatti-email {
+    display: inline-block;
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    font-size: 1rem;
+    color: var(--burgundy);
+    border-bottom: 1px solid rgba(109, 56, 56, 0.35);
+    transition: var(--transition);
+    font-family: var(--font-sans);
+}
+
+.contatti-email:hover {
+    color: var(--gold);
+    border-color: var(--gold);
 }
 
 .social-links {
