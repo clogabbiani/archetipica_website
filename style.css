@@ -1210,6 +1210,32 @@ a {
     color: rgba(255, 255, 255, 0.7);
 }
 
+.footer-piva {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.3rem;
+}
+
+.footer-legal-links {
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-legal-links a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-legal-links a:hover {
+    color: var(--gold);
+}
+
+.footer-legal-links span {
+    margin: 0 0.4rem;
+}
+
 /* ============================================
    RESPONSIVE DESIGN
    ============================================ */
